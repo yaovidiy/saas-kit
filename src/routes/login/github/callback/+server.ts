@@ -26,8 +26,6 @@ export async function GET(event: RequestEvent): Promise<Response> {
     });
     const githubUser: GitHubUser = await githubUserResponse.json();
 
-    // Replace this with your own DB client.
-    // "github_id", "=", githubUser.id
     const existingUser = await db.user.findUnique({
       where: {
         github_id: githubUser.id
