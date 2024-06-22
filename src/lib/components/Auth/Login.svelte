@@ -1,9 +1,37 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
+	let loginError = $state<string | null>(null);
+	let username = $state('');
+	let password = $state('');
+
+	async function login() {
+		const resp = await fetch('/api/auth/login', {
+			method: 'POST',
+			body: JSON.stringify({
+				username,
+				password
+			})
+		});
+
+		if (!resp.ok) {
+			const error = await resp.json();
+			loginError = error.message;
+
+			return;
+		}
+
+		const res = await resp.json();
+
+		if (res.success) {
+			goto('/');
+		}
+	}
 </script>
 
 <div class="flex flex-col items-center gap-5">
-  <h3 class="text-xl font-bold text-center">Login</h3>
-  <label class="input input-bordered flex items-center gap-2">
+	<h3 class="text-xl font-bold text-center">Login</h3>
+	<label class="input input-bordered flex items-center gap-2">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 16 16"
@@ -13,7 +41,7 @@
 				d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"
 			/></svg
 		>
-		<input type="text" class="grow" placeholder="Username" />
+		<input bind:value={username} type="text" class="grow" placeholder="Username" />
 	</label>
 	<label class="input input-bordered flex items-center gap-2">
 		<svg
@@ -27,8 +55,11 @@
 				clip-rule="evenodd"
 			/></svg
 		>
-		<input type="password" class="grow" placeholder="Password" />
+		<input bind:value={password} type="password" class="grow" placeholder="Password" />
 	</label>
+	{#if loginError}
+		<p class="text-sm text-red-500">{loginError}</p>
+	{/if}
 
-	<button class="btn btn-primary">Login</button>
+	<button class="btn btn-primary" onclick={login}>Login</button>
 </div>
