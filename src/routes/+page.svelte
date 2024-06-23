@@ -2,8 +2,21 @@
 	import Button from '$lib/components/ui/Button/Button.svelte';
 	import Input from '$lib/components/ui/Input/Input.svelte';
 	import Dropdown from '$lib/components/ui/Dropdown/Dropdown.svelte';
+	import Accordion from '$lib/components/ui/Accordion/Accordion.svelte';
 
 	const { data } = $props();
+	const accordionItems = [
+		{
+			title: 'Item 1',
+			content:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor ultricies aliquam. Nullam nec turpis eget dolor ultricies aliquam.'
+		},
+		{
+			title: 'Item 2',
+			content:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor ultricies aliquam. Nullam nec turpis eget dolor ultricies aliquam.'
+		}
+	];
 </script>
 
 <fieldset class="flex flex-wrap gap-2 mb-10">
@@ -29,3 +42,5 @@
 		<li><a href="!#">Item 2</a></li>
 	</ul>
 </Dropdown>
+
+<Accordion {accordionItems}></Accordion>
