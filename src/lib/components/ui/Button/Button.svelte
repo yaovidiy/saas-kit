@@ -12,7 +12,7 @@
 		onclick?: () => void;
 	} = $props();
 
-	let buttonClasses = `btn text-base font-bold btn-${type} min-h-[50px] max-w-[250px] w-full ${extraClasses}`;
+	let buttonClasses = `btn text-base font-bold btn-${type} min-h-[50px] md:max-w-[250px] w-full ${extraClasses}`;
 </script>
 
 <button {onclick} class={buttonClasses} type="button">

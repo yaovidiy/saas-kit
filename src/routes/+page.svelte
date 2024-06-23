@@ -1,15 +1,23 @@
 <script lang="ts">
-	import Modal from '$lib/components/Modal/Modal.svelte';
-	import Login from '$lib/components/Auth/Login.svelte';
-	import SignUp from '$lib/components/Auth/SignUp.svelte';
+	import Button from '$lib/components/ui/Button/Button.svelte';
+	import Input from '$lib/components/ui/Input/Input.svelte';
+
 	const { data } = $props();
 </script>
 
-<Modal></Modal>
+<fieldset class="flex flex-wrap gap-2 mb-10">
+	<legend>Base buttons</legend>
+	<Button type="primary">Primary</Button>
+	<Button extraClasses="btn-secondary" type="">Secondary</Button>
+	<Button type="ghost">Ghost</Button>
+	<Button type="outline">Outline</Button>
+	<Button extraClasses="btn-error" type="">Error</Button>
+	<Button extraClasses="btn-success" type="">Success</Button>
+	<Button extraClasses="btn-warning" type="">Warning</Button>
+	<Button extraClasses="btn-info" type="">Info</Button>
+</fieldset>
 
-<Login></Login>
-<SignUp></SignUp>
-
-<h1 class="text-red-500">Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-{data.username ?? ''}
+<fieldset>
+	<legend>Base input</legend>
+	<Input extraClasses="max-w-xs" value="" placeholder="Username" type="text" />
+</fieldset>
