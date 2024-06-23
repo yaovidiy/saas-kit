@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/Button/Button.svelte';
 	import Input from '$lib/components/ui/Input/Input.svelte';
+	import Dropdown from '$lib/components/ui/Dropdown/Dropdown.svelte';
 
 	const { data } = $props();
 </script>
@@ -21,3 +22,10 @@
 	<legend>Base input</legend>
 	<Input extraClasses="max-w-xs" value="" placeholder="Username" type="text" />
 </fieldset>
+
+<Dropdown>
+	<ul class="menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+		<li><a href="!#">Item 1</a></li>
+		<li><a href="!#">Item 2</a></li>
+	</ul>
+</Dropdown>
