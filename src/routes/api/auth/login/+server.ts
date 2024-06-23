@@ -33,7 +33,7 @@ export async function POST(event: RequestEvent): Promise<Response> {
     }
   })
 
-  if (!existingUser) {
+  if (!existingUser || !existingUser.password_hash) {
 
     return error(400, {
       message: "Incorrect username or password"

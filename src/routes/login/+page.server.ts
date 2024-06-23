@@ -34,7 +34,7 @@ export const actions: Actions = {
       }
     })
 
-    if (!existingUser) {
+    if (!existingUser || !existingUser.password_hash) {
 
       return fail(400, {
         message: "Incorrect username or password"

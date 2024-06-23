@@ -43,6 +43,8 @@
 	"type": "module",
 	"dependencies": {
 		"@lucia-auth/adapter-prisma": "^4.0.1",
-		"arctic": "^1.9.1"
+		"@stripe/stripe-js": "^4.0.0",
+		"arctic": "^1.9.1",
+		"stripe": "^15.12.0"
 	}
 }
