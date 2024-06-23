@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import Button from '$lib/components/ui/Button/Button.svelte';
 
 	let {
 		trigger,
@@ -19,11 +20,12 @@
 {#if trigger}
 	{@render trigger()}
 {:else}
-	<button
-		class="btn btn-primary"
+	<Button
+		extraClasses="max-w-[150xp] btn-outline"
 		onclick={() => {
 			modal?.showModal();
-		}}>Open modal</button
+		}}
+		type="primary">Open modal</Button
 	>
 {/if}
 
