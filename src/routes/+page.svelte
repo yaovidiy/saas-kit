@@ -127,3 +127,22 @@
 		</svg>
 	{/snippet}
 </Tooltip>
+
+<article class="prose">
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor ultricies
+		aliquam. Nullam nec turpis eget dolor ultricies aliquam.
+	</p>
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor ultricies
+		aliquam. Nullam nec turpis eget dolor ultricies aliquam.
+	</p>
+
+	<blockquote>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor
+			ultricies aliquam. Nullam nec turpis eget dolor ultricies aliquam.
+		</p>
+	</blockquote>
+	<h1>This is color!</h1>
+</article>
