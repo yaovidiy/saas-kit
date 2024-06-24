@@ -5,6 +5,7 @@
 	import Accordion from '$lib/components/ui/Accordion/Accordion.svelte';
 	import Table from '$lib/components/ui/Table/Table.svelte';
 	import Alert from '$lib/components/ui/Alert/Alert.svelte';
+	import ToastContainer from '$lib/components/ui/Toasts/ToastContainer.svelte';
 
 	const { data } = $props();
 	const accordionItems = [
@@ -28,6 +29,20 @@
 		['Row 5 Column 1', 'Row 5 Column 2', 'Row 5 Column 3', 'Row 5 Column 4', 'Row 5 Column 5']
 	];
 	const footers: string[] = ['Footer 1', 'Footer 2', 'Footer 3', 'Footer 4', 'Footer 5'];
+
+	let dummyToasts = $state<{ message: string; type: 'success' | 'error' | 'warning' | 'info' }[]>(
+		[]
+	);
+
+	function addDummyToast() {
+		dummyToasts = [
+			...dummyToasts,
+			{
+				message: 'This is a dummy toast',
+				type: 'success'
+			}
+		];
+	}
 </script>
 
 <fieldset class="flex flex-wrap gap-2 mb-10">
@@ -89,3 +104,7 @@
 </Alert>
 
 <Alert alertType="info" alertText="Just an info for you"></Alert>
+
+<Button type="primary" onclick={addDummyToast}>Add toast</Button>
+
+<ToastContainer toasts={dummyToasts}></ToastContainer>
