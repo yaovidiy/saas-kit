@@ -3,7 +3,7 @@
 	import Input from '$lib/components/ui/Input/Input.svelte';
 	import Dropdown from '$lib/components/ui/Dropdown/Dropdown.svelte';
 	import Accordion from '$lib/components/ui/Accordion/Accordion.svelte';
-	import Carousel from '$lib/components/ui/Carousel/Carousel.svelte';
+	import Table from '$lib/components/ui/Table/Table.svelte';
 
 	const { data } = $props();
 	const accordionItems = [
@@ -18,17 +18,15 @@
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor ultricies aliquam. Nullam nec turpis eget dolor ultricies aliquam.'
 		}
 	];
-	const carouselItems = [
-		{
-			image: 'https://via.placeholder.com/300'
-		},
-		{
-			image: 'https://via.placeholder.com/600'
-		},
-		{
-			image: 'https://via.placeholder.com/900'
-		}
+	const headers: string[] = ['Header 1', 'Header 2', 'Header 3', 'Header 4', 'Header 5'];
+	const columns: string[][] = [
+		['Row 1 Column 1', 'Row 1 Column 2', 'Row 1 Column 3', 'Row 1 Column 4', 'Row 1 Column 5'],
+		['Row 2 Column 1', 'Row 2 Column 2', 'Row 2 Column 3', 'Row 2 Column 4', 'Row 2 Column 5'],
+		['Row 3 Column 1', 'Row 3 Column 2', 'Row 3 Column 3', 'Row 3 Column 4', 'Row 3 Column 5'],
+		['Row 4 Column 1', 'Row 4 Column 2', 'Row 4 Column 3', 'Row 4 Column 4', 'Row 4 Column 5'],
+		['Row 5 Column 1', 'Row 5 Column 2', 'Row 5 Column 3', 'Row 5 Column 4', 'Row 5 Column 5']
 	];
+	const footers: string[] = ['Footer 1', 'Footer 2', 'Footer 3', 'Footer 4', 'Footer 5'];
 </script>
 
 <fieldset class="flex flex-wrap gap-2 mb-10">
@@ -59,4 +57,13 @@
 	<Accordion {accordionItems}></Accordion>
 </div>
 
-<Carousel {carouselItems}></Carousel>
+<Table {headers} data={columns} {footers} caption="This is a table!">
+	{#snippet bodyCell(cellValue)}
+		<td>
+			<div>
+				<div class="font-bold">Heading</div>
+				<div class="text-sm opacity-50">{cellValue}</div>
+			</div>
+		</td>
+	{/snippet}
+</Table>
