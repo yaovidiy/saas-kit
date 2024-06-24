@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { randomId } from '$lib/utils/randomId';
-	import { sanitizeHTML } from '$lib/utils/sanitizeHtml';
+	// import { sanitizeHTML } from '$lib/utils/sanitizeHtml';
 
 	let { accordionItems }: { accordionItems: { title: string; content: string }[] } = $props();
 
@@ -13,7 +13,7 @@
 			<input type="radio" name={id} checked={index === 0 ? true : false} />
 			<div class="collapse-title text-xl font-medium">{item.title}</div>
 			<div class="collapse-content">
-				{@html sanitizeHTML(item.content)}
+				{@html item.content}
 			</div>
 		</div>
 	{/each}

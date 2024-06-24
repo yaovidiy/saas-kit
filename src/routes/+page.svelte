@@ -3,6 +3,7 @@
 	import Input from '$lib/components/ui/Input/Input.svelte';
 	import Dropdown from '$lib/components/ui/Dropdown/Dropdown.svelte';
 	import Accordion from '$lib/components/ui/Accordion/Accordion.svelte';
+	import Carousel from '$lib/components/ui/Carousel/Carousel.svelte';
 
 	const { data } = $props();
 	const accordionItems = [
@@ -15,6 +16,17 @@
 			title: 'Item 2',
 			content:
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor ultricies aliquam. Nullam nec turpis eget dolor ultricies aliquam.'
+		}
+	];
+	const carouselItems = [
+		{
+			image: 'https://via.placeholder.com/300'
+		},
+		{
+			image: 'https://via.placeholder.com/600'
+		},
+		{
+			image: 'https://via.placeholder.com/900'
 		}
 	];
 </script>
@@ -43,4 +55,8 @@
 	</ul>
 </Dropdown>
 
-<Accordion {accordionItems}></Accordion>
+<div class="mb-10 px-5">
+	<Accordion {accordionItems}></Accordion>
+</div>
+
+<Carousel {carouselItems}></Carousel>
