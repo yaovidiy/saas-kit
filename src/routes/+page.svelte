@@ -7,6 +7,7 @@
 	import Alert from '$lib/components/ui/Alert/Alert.svelte';
 	import ToastContainer from '$lib/components/ui/Toasts/ToastContainer.svelte';
 	import Tooltip from '$lib/components/ui/Tooltip/Tooltip.svelte';
+	import Article from '$lib/components/ui/Article/Article.svelte';
 
 	const { data } = $props();
 	const accordionItems = [
@@ -128,33 +129,34 @@
 	{/snippet}
 </Tooltip>
 
-<article class="prose prose-slate mx-auto">
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor ultricies
-		aliquam. Nullam nec turpis eget dolor ultricies aliquam.
-	</p>
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor ultricies
-		aliquam. Nullam nec turpis eget dolor ultricies aliquam.
-	</p>
-
-	<blockquote>
+<Article>
+	{#snippet article()}
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor
 			ultricies aliquam. Nullam nec turpis eget dolor ultricies aliquam.
 		</p>
-	</blockquote>
-	<h1>This is color!</h1>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor
+			ultricies aliquam. Nullam nec turpis eget dolor ultricies aliquam.
+		</p>
 
-	<p>
-		<span class="text-primary">Primary</span>
-		<span class="text-secondary">Secondary</span>
-		<span class="text-error">Error</span>
-		<span class="text-success">Success</span>
-		<span class="text-warning">Warning</span>
-		<span class="text-info">Info</span>
-	</p>
-	<pre>
+		<blockquote>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor
+				ultricies aliquam. Nullam nec turpis eget dolor ultricies aliquam.
+			</p>
+		</blockquote>
+		<h1>This is color!</h1>
+
+		<p>
+			<span class="text-primary">Primary</span>
+			<span class="text-secondary">Secondary</span>
+			<span class="text-error">Error</span>
+			<span class="text-success">Success</span>
+			<span class="text-warning">Warning</span>
+			<span class="text-info">Info</span>
+		</p>
+		<pre>
 		<code class="language-js text-left">
 			const a = ['1', '2', '3']
 			And this is a code block
@@ -162,30 +164,31 @@
 		
 	</pre>
 
-	<ol>
-		<li>Item 1</li>
-		<li>Item 2</li>
-		<li>Item 3</li>
-	</ol>
+		<ol>
+			<li>Item 1</li>
+			<li>Item 2</li>
+			<li>Item 3</li>
+		</ol>
 
-	<figure>
-		<img
-			src="https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
-			alt="unsplash"
-		/>
+		<figure>
+			<img
+				src="https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
+				alt="unsplash"
+			/>
 
-		<figcaption>
-			Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-			classical Latin literature from 45 BC, making it over 2000 years old.
-		</figcaption>
-	</figure>
+			<figcaption>
+				Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece
+				of classical Latin literature from 45 BC, making it over 2000 years old.
+			</figcaption>
+		</figure>
 
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor ultricies
-		aliquam. Nullam nec turpis eget dolor ultricies <a
-			href="/"
-			target="_blank"
-			rel="noopener noreferrer">aliquam.</a
-		>
-	</p>
-</article>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec turpis eget dolor
+			ultricies aliquam. Nullam nec turpis eget dolor ultricies <a
+				href="/"
+				target="_blank"
+				rel="noopener noreferrer">aliquam.</a
+			>
+		</p>
+	{/snippet}
+</Article>
