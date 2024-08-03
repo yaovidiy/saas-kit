@@ -9,14 +9,17 @@ services:
       - 5173:5173
     volumes:
       - ./src:/app/src
-    command: npm run dev
+    command: ["sh", "-c", "npx prisma migrate deploy && npm run dev"]
     environment:
       - PORT=5173
-      - HOST=0.0.0.0
     env_file:
       - .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    networks:
+      - saasnetwork
+
   db:
     container_name: pg_db
     image: postgres:15
@@ -28,6 +31,18 @@ services:
       - 5432:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-  
+    networks:
+      - saasnetwork
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 volumes:
   postgres_data:
+
+
+networks:
+  saasnetwork:
+    driver: bridge

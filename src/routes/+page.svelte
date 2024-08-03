@@ -47,6 +47,10 @@
 	}
 </script>
 
+{#if data}
+	<h1>{data.username}</h1>
+{/if}
+
 <fieldset class="flex flex-wrap gap-2 mb-10">
 	<legend>Base buttons</legend>
 	<Button type="primary">Primary</Button>

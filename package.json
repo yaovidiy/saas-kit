@@ -48,6 +48,7 @@
 		"@stripe/stripe-js": "^4.0.0",
 		"arctic": "^1.9.1",
 		"jsdom": "^24.1.0",
+		"lucide-svelte": "^0.417.0",
 		"stripe": "^15.12.0"
 	}
 }
