@@ -1,22 +1,15 @@
-# README
+# SvelteKit SAAS starter
+
 This is a simple SAAS kit to start of project easely with svelte 5 and sveltekit
 
 ## Technologies
 
-### Auth
-  Lucia
-
-### Database ORM
-  Prisma with OAUTH from github
-
-### Database
-  Postgress SQL docker container
-
-### Payments
-  Stripe
-
-### Framework
-  SvelteKit with Svelte 5 and Typescript
+- Lucia for auth
+- OAUTH integration with GitHub
+- Prisma as ORM
+- Postgress SQL docker container
+- Stripe for payment managment
+- SvelteKit with Svelte 5 and Typescript as framework
 
 ## Development
 
@@ -28,4 +21,4 @@ For now container is not restarted on files change but it will be done in future
 
 ## Deployment
 
-This section will provide instructions and guidelines for deploying the project.
+Will be provided later, for now not deployment ready
