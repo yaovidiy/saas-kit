@@ -13,6 +13,7 @@
 	import Range from '$lib/components/ui/Range/Range.svelte';
 	import RadioGroup from '$lib/components/ui/Radio/RadioGroup.svelte';
 	import CheckboxGroup from '$lib/components/ui/Checkbox/CheckboxGroup.svelte';
+	import Toggle from '$lib/components/ui/Toggle/Toggle.svelte';
 
 	const { data } = $props();
 	let emailStatus = $state<string>('');
@@ -292,7 +293,21 @@
 			? (selectedCheckboxes = selectedCheckboxes.filter((checkbox) => checkbox !== value))
 			: (selectedCheckboxes = [...selectedCheckboxes, value]);
 	}
+
+	let isCheckedValue = $state<boolean>(false);
 </script>
+
+<div>
+	Is checked: {isCheckedValue}
+
+	<Toggle
+		type="primary"
+		size="lg"
+		isChecked={isCheckedValue}
+		label="Toggle me"
+		onChanged={(isChecked) => (isCheckedValue = isChecked)}
+	/>
+</div>
 
 <div>
 	selected checkboxes: {selectedCheckboxes.join(', ')}
