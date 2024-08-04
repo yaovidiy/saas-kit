@@ -12,6 +12,7 @@
 	import StarRating from '$lib/components/ui/StarRating/StarRating.svelte';
 	import Range from '$lib/components/ui/Range/Range.svelte';
 	import RadioGroup from '$lib/components/ui/Radio/RadioGroup.svelte';
+	import CheckboxGroup from '$lib/components/ui/Checkbox/CheckboxGroup.svelte';
 
 	const { data } = $props();
 	let emailStatus = $state<string>('');
@@ -217,10 +218,88 @@
 		}
 	];
 
+	const Checkboxes: {
+		name: string;
+		value: string | number;
+		label?: string;
+		type: 'primary' | 'secondary' | 'accent' | 'error' | 'success' | 'warning' | 'info';
+		size: 'xs' | 'sm' | 'md' | 'lg';
+		isChecked?: boolean;
+	}[] = [
+		{
+			name: 'checkboxes',
+			value: 'Checkbox 1',
+			size: 'lg',
+			type: 'primary',
+			label: 'Checkbox 1',
+			isChecked: false
+		},
+		{
+			name: 'checkboxes',
+			value: 'Checkbox 2',
+			size: 'lg',
+			type: 'secondary',
+			label: 'Checkbox 2',
+			isChecked: false
+		},
+		{
+			name: 'checkboxes',
+			value: 'Checkbox 3',
+			size: 'lg',
+			type: 'accent',
+			label: 'Checkbox 3',
+			isChecked: false
+		},
+		{
+			name: 'checkboxes',
+			value: 'Checkbox 4',
+			size: 'lg',
+			type: 'error',
+			label: 'Checkbox 4',
+			isChecked: false
+		},
+		{
+			name: 'checkboxes',
+			value: 'Checkbox 5',
+			size: 'lg',
+			type: 'success',
+			label: 'Checkbox 5',
+			isChecked: false
+		},
+		{
+			name: 'checkboxes',
+			value: 'Checkbox 6',
+			size: 'lg',
+			type: 'warning',
+			label: 'Checkbox 6',
+			isChecked: false
+		},
+		{
+			name: 'checkboxes',
+			value: 'Checkbox 7',
+			size: 'lg',
+			type: 'info',
+			label: 'Checkbox 7',
+			isChecked: false
+		}
+	];
+
 	let selectedRadio = $state<string | number>('');
+	let selectedCheckboxes = $state<(string | number)[]>([]);
+
+	function updateCheckboxes(value: string | number) {
+		selectedCheckboxes.includes(value)
+			? (selectedCheckboxes = selectedCheckboxes.filter((checkbox) => checkbox !== value))
+			: (selectedCheckboxes = [...selectedCheckboxes, value]);
+	}
 </script>
 
-Seletected Radio Value: { selectedRadio }
+<div>
+	selected checkboxes: {selectedCheckboxes.join(', ')}
+	<CheckboxGroup checkboxes={Checkboxes} onChecked={(value) => updateCheckboxes(value)} />
+</div>
+
+Seletected Radio Value: {selectedRadio}
 <RadioGroup
 	radios={radioButtons}
 	onValueChange={(value: string | number) => (selectedRadio = value)}
