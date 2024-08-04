@@ -10,6 +10,7 @@
 	import Article from '$lib/components/ui/Article/Article.svelte';
 
 	const { data } = $props();
+	let emailStatus = $state<string>('');
 	const accordionItems = [
 		{
 			title: 'Item 1',
@@ -36,6 +37,28 @@
 		[]
 	);
 
+	async function sendDummyEmail() {
+		emailStatus = 'Sending email...';
+
+		try {
+			const response = await fetch('/api/send-verify-email', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ email: 'yaovdiy@gmail.com' })
+			});
+
+			if (response.ok) {
+				emailStatus = 'Email sent!';
+			} else {
+				emailStatus = 'Failed to send email';
+			}
+		} catch (err) {
+			emailStatus = 'Failed to send email';
+		}
+	}
+
 	function addDummyToast() {
 		dummyToasts = [
 			...dummyToasts,
@@ -47,9 +70,15 @@
 	}
 </script>
 
+{#if emailStatus}
+	<p>{emailStatus}</p>
+{/if}
+
 {#if data}
 	<h1>{data.username}</h1>
 {/if}
+
+<Button type="primary" onclick={sendDummyEmail}>Send email</Button>
 
 <fieldset class="flex flex-wrap gap-2 mb-10">
 	<legend>Base buttons</legend>
