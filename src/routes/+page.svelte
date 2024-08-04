@@ -17,6 +17,7 @@
 	import FileInput from '$lib/components/ui/FileInput/FileInput.svelte';
 	import Select from '$lib/components/ui/Select/Select.svelte';
 	import Modal from '$lib/components/Modal/Modal.svelte';
+	import Swap from '$lib/components/ui/Swap/Swap.svelte';
 
 	const { data } = $props();
 	let emailStatus = $state<string>('');
@@ -300,6 +301,10 @@
 	let isCheckedValue = $state<boolean>(false);
 	let selectedValue = $state<string>('');
 </script>
+
+<div>
+	<Swap type="flip" classes="text-9xl" />
+</div>
 
 <div>
 	<Modal closeOnClickOutside={true} />
