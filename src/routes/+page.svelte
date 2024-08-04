@@ -9,11 +9,13 @@
 	import Tooltip from '$lib/components/ui/Tooltip/Tooltip.svelte';
 	import Article from '$lib/components/ui/Article/Article.svelte';
 	import toastStore from '$lib/stores/toasts.svelte.js';
+	import StarRating from '$lib/components/ui/StarRating/StarRating.svelte';
 
 	const { data } = $props();
 	let emailStatus = $state<string>('');
 	let isButtonPending = $state<boolean>(false);
 	let isEmailPending = $state<boolean>(false);
+	let currentRating = $state<number>(0);
 	const accordionItems = [
 		{
 			title: 'Item 1',
@@ -154,6 +156,9 @@
 	<h1>{data.username}</h1>
 {/if}
 
+<StarRating onUpdate={(score) => currentRating = score} />
+Current score: {currentRating}
+<br />
 <Button isOutlined isPending={isEmailPending} type="primary" onclick={sendDummyEmail}
 	>Send email</Button
 >
