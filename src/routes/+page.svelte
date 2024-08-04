@@ -10,6 +10,7 @@
 	import Article from '$lib/components/ui/Article/Article.svelte';
 	import toastStore from '$lib/stores/toasts.svelte.js';
 	import StarRating from '$lib/components/ui/StarRating/StarRating.svelte';
+	import Range from '$lib/components/ui/Range/Range.svelte';
 
 	const { data } = $props();
 	let emailStatus = $state<string>('');
@@ -155,8 +156,9 @@
 {#if data}
 	<h1>{data.username}</h1>
 {/if}
-
-<StarRating onUpdate={(score) => currentRating = score} />
+<Range type="primary" size="lg" onValueChange={(number) => console.log(number)} />
+<br />
+<StarRating onUpdate={(score) => (currentRating = score)} />
 Current score: {currentRating}
 <br />
 <Button isOutlined isPending={isEmailPending} type="primary" onclick={sendDummyEmail}
