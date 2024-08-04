@@ -68,6 +68,83 @@
 			}
 		];
 	}
+
+	const buttonsArray: {
+		type: 'primary' | 'secondary' | 'ghost' | 'error' | 'success' | 'warning' | 'info';
+		text: string;
+		isOutlined: boolean;
+	}[] = [
+		{
+			type: 'primary',
+			text: 'Primary',
+			isOutlined: false
+		},
+		{
+			type: 'secondary',
+			text: 'Secondary',
+			isOutlined: false
+		},
+		{
+			type: 'ghost',
+			text: 'Ghost',
+			isOutlined: false
+		},
+		{
+			type: 'error',
+			text: 'Error',
+			isOutlined: false
+		},
+		{
+			type: 'success',
+			text: 'Success',
+			isOutlined: false
+		},
+		{
+			type: 'warning',
+			text: 'Warning',
+			isOutlined: false
+		},
+		{
+			type: 'info',
+			text: 'Info',
+			isOutlined: false
+		},
+		{
+			type: 'primary',
+			text: 'Primary Outlined',
+			isOutlined: true
+		},
+		{
+			type: 'secondary',
+			text: 'Secondary Outlined',
+			isOutlined: true
+		},
+		{
+			type: 'ghost',
+			text: 'Ghost Outlined',
+			isOutlined: true
+		},
+		{
+			type: 'error',
+			text: 'Error Outlined',
+			isOutlined: true
+		},
+		{
+			type: 'success',
+			text: 'Success Outlined',
+			isOutlined: true
+		},
+		{
+			type: 'warning',
+			text: 'Warning Outlined',
+			isOutlined: true
+		},
+		{
+			type: 'info',
+			text: 'Info Outlined',
+			isOutlined: true
+		}
+	];
 </script>
 
 {#if emailStatus}
@@ -82,14 +159,11 @@
 
 <fieldset class="flex flex-wrap gap-2 mb-10">
 	<legend>Base buttons</legend>
-	<Button type="primary">Primary</Button>
-	<Button type="secondary">Secondary</Button>
-	<Button type="ghost">Ghost</Button>
-	<Button type="outline">Outline</Button>
-	<Button type="error">Error</Button>
-	<Button type="success">Success</Button>
-	<Button type="warning">Warning</Button>
-	<Button type="info">Info</Button>
+	{#each buttonsArray as btn}
+		<Button type={btn.type} isOutlined={btn.isOutlined}>
+			{btn.text}
+		</Button>
+	{/each}
 </fieldset>
 
 <fieldset>
