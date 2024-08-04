@@ -14,6 +14,7 @@
 	import RadioGroup from '$lib/components/ui/Radio/RadioGroup.svelte';
 	import CheckboxGroup from '$lib/components/ui/Checkbox/CheckboxGroup.svelte';
 	import Toggle from '$lib/components/ui/Toggle/Toggle.svelte';
+	import FileInput from '$lib/components/ui/FileInput/FileInput.svelte';
 
 	const { data } = $props();
 	let emailStatus = $state<string>('');
@@ -296,6 +297,17 @@
 
 	let isCheckedValue = $state<boolean>(false);
 </script>
+
+<div>
+	<FileInput
+		type="primary"
+		size="lg"
+		label="Upload file"
+		onFileChage={(files) => console.log(files)}
+		isMultiple
+		acceptTypes="image/*"
+	/>
+</div>
 
 <div>
 	Is checked: {isCheckedValue}
