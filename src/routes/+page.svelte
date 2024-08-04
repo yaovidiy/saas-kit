@@ -15,6 +15,7 @@
 	import CheckboxGroup from '$lib/components/ui/Checkbox/CheckboxGroup.svelte';
 	import Toggle from '$lib/components/ui/Toggle/Toggle.svelte';
 	import FileInput from '$lib/components/ui/FileInput/FileInput.svelte';
+	import Select from '$lib/components/ui/Select/Select.svelte';
 
 	const { data } = $props();
 	let emailStatus = $state<string>('');
@@ -296,7 +297,24 @@
 	}
 
 	let isCheckedValue = $state<boolean>(false);
+	let selectedValue = $state<string>('');
 </script>
+
+<div>
+	Selected Value: {selectedValue}
+	<Select
+		type="primary"
+		size="lg"
+		selectLabel="Select an option"
+		options={[
+			{ value: 'Option 1', label: 'Option 1' },
+			{ value: 'Option 2', label: 'Option 2' },
+			{ value: 'Option 3', label: 'Option 3' }
+		]}
+		label="Select an option"
+		onSelect={(value) => (selectedValue = value)}
+	/>
+</div>
 
 <div>
 	<FileInput
