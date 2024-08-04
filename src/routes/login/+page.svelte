@@ -4,7 +4,7 @@
 	import Input from '$lib/components/ui/Input/Input.svelte';
 	import Button from '$lib/components/ui/Button/Button.svelte';
 	import { goto } from '$app/navigation';
-	import { Github } from 'lucide-svelte';
+	import { Github, Chrome } from 'lucide-svelte';
 </script>
 
 <div class="card m-auto bg-base-200 shadow-xl md:max-w-96">
@@ -29,11 +29,17 @@
 				extraClasses="md:max-w-full flex gap-2 items-center"
 				onclick={() => {
 					goto('/api/auth/github');
-				}}>
+				}}
+			>
 				<Github size="24" />
 				Sign in with GitHub
-				</Button
-			>
+			</Button>
+			<Button onclick={() => {
+				goto('/api/auth/google');
+			}} type="info" extraClasses="md:max-w-full flex gap-2 items-center">
+				<Chrome />
+				Sign in with Google
+			</Button>
 		</div>
 	</div>
 </div>

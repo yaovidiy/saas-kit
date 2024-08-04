@@ -28,7 +28,7 @@ export async function GET(event: RequestEvent): Promise<Response> {
 
     const existingUser = await db.user.findUnique({
       where: {
-        github_id: githubUser.id
+        email: githubUser.email
       }
     });
 
@@ -39,17 +39,40 @@ export async function GET(event: RequestEvent): Promise<Response> {
         path: ".",
         ...sessionCookie.attributes
       });
+
+      const existingUserProvider = await db.authProviders.findFirst({
+        where: {
+          userId: existingUser.id,
+          provider: "github"
+        }
+      });
+
+      if (!existingUserProvider) {
+        await db.authProviders.create({
+          data: {
+            userId: existingUser.id,
+            provider: "github"
+          }
+        });
+      }
     } else {
       const userId = generateIdFromEntropySize(10); // 16 characters long
 
-      // Replace this with your own DB client.
-      await db.user.create({
-        data: {
-          id: userId,
-          github_id: githubUser.id,
-          username: githubUser.login
-        }
-      });
+      await db.$transaction([
+        db.user.create({
+          data: {
+            id: userId,
+            username: githubUser.login,
+            email: githubUser.email,
+          }
+        }),
+        db.authProviders.create({
+          data: {
+            userId,
+            provider: "github"
+          }
+        })
+      ]);
 
       const session = await lucia.createSession(userId, {});
       const sessionCookie = lucia.createSessionCookie(session.id);
@@ -83,4 +106,5 @@ export async function GET(event: RequestEvent): Promise<Response> {
 interface GitHubUser {
   id: number;
   login: string;
+  email: string;
 }
