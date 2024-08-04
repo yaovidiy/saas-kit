@@ -11,6 +11,7 @@
 	import toastStore from '$lib/stores/toasts.svelte.js';
 	import StarRating from '$lib/components/ui/StarRating/StarRating.svelte';
 	import Range from '$lib/components/ui/Range/Range.svelte';
+	import RadioGroup from '$lib/components/ui/Radio/RadioGroup.svelte';
 
 	const { data } = $props();
 	let emailStatus = $state<string>('');
@@ -147,7 +148,83 @@
 			isOutlined: true
 		}
 	];
+
+	type RadioType = {
+		name: string;
+		value: string | number;
+		size: 'xs' | 'sm' | 'md' | 'lg';
+		type: 'primary' | 'secondary' | 'accent' | 'error' | 'success' | 'warning' | 'info';
+		label?: string;
+		isChecked?: boolean;
+	};
+
+	const radioButtons: RadioType[] = [
+		{
+			name: 'radios',
+			value: 'Radio 1',
+			size: 'lg',
+			type: 'primary',
+			label: 'Radio 1',
+			isChecked: false
+		},
+		{
+			name: 'radios',
+			value: 'Radio 2',
+			size: 'lg',
+			type: 'secondary',
+			label: 'Radio 2',
+			isChecked: false
+		},
+		{
+			name: 'radios',
+			value: 'Radio 3',
+			size: 'lg',
+			type: 'accent',
+			label: 'Radio 3',
+			isChecked: false
+		},
+		{
+			name: 'radios',
+			value: 'Radio 4',
+			size: 'lg',
+			type: 'error',
+			label: 'Radio 4',
+			isChecked: false
+		},
+		{
+			name: 'radios',
+			value: 'Radio 5',
+			size: 'lg',
+			type: 'success',
+			label: 'Radio 5',
+			isChecked: false
+		},
+		{
+			name: 'radios',
+			value: 'Radio 6',
+			size: 'lg',
+			type: 'warning',
+			label: 'Radio 6',
+			isChecked: false
+		},
+		{
+			name: 'radios',
+			value: 'Radio 7',
+			size: 'lg',
+			type: 'info',
+			label: 'Radio 7',
+			isChecked: false
+		}
+	];
+
+	let selectedRadio = $state<string | number>('');
 </script>
+
+Seletected Radio Value: { selectedRadio }
+<RadioGroup
+	radios={radioButtons}
+	onValueChange={(value: string | number) => (selectedRadio = value)}
+/>
 
 {#if emailStatus}
 	<p>{emailStatus}</p>
