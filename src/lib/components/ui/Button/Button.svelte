@@ -1,15 +1,21 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import Loader from '$lib/components/ui/Loader/Loader.svelte';
+
 	let {
 		children,
 		type,
 		isOutlined,
 		extraClasses,
+		isPending,
+		isDisabled,
 		onclick
 	}: {
 		children: Snippet;
 		type: 'primary' | 'secondary' | 'ghost' | 'error' | 'success' | 'warning' | 'info';
 		isOutlined?: boolean;
+		isPending?: boolean;
+		isDisabled?: boolean;
 		extraClasses?: string;
 		onclick?: () => void;
 	} = $props();
@@ -24,9 +30,13 @@
 		info: 'btn-info'
 	};
 
-	let buttonClasses = `btn text-base font-bold ${isOutlined ? 'btn-outline' : ''} ${buttonTypes[type]} min-h-[50px] md:max-w-[250px] w-full ${extraClasses}`;
+	let buttonClasses = `btn disabled:cursor-not-allowed text-base font-bold ${isOutlined ? 'btn-outline' : ''} ${buttonTypes[type]} min-h-[50px] md:max-w-[250px] w-full ${extraClasses}`;
 </script>
 
-<button {onclick} class={buttonClasses} type="button">
-	{@render children()}
+<button {onclick} disabled={isPending || isDisabled} class={buttonClasses} type="button">
+	{#if isPending}
+		<Loader type="spinner" size="lg" color="primary" />
+	{:else}
+		{@render children()}
+	{/if}
 </button>

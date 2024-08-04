@@ -12,6 +12,8 @@
 
 	const { data } = $props();
 	let emailStatus = $state<string>('');
+	let isButtonPending = $state<boolean>(false);
+	let isEmailPending = $state<boolean>(false);
 	const accordionItems = [
 		{
 			title: 'Item 1',
@@ -34,13 +36,9 @@
 	];
 	const footers: string[] = ['Footer 1', 'Footer 2', 'Footer 3', 'Footer 4', 'Footer 5'];
 
-	let dummyToasts = $state<{ message: string; type: 'success' | 'error' | 'warning' | 'info' }[]>(
-		[]
-	);
-
 	async function sendDummyEmail() {
 		emailStatus = 'Sending email...';
-
+		isEmailPending = true;
 		try {
 			const response = await fetch('/api/send-verify-email', {
 				method: 'POST',
@@ -57,6 +55,8 @@
 			}
 		} catch (err) {
 			emailStatus = 'Failed to send email';
+		} finally {
+			isEmailPending = false;
 		}
 	}
 
@@ -154,12 +154,25 @@
 	<h1>{data.username}</h1>
 {/if}
 
-<Button type="primary" onclick={sendDummyEmail}>Send email</Button>
+<Button isOutlined isPending={isEmailPending} type="primary" onclick={sendDummyEmail}
+	>Send email</Button
+>
 
 <fieldset class="flex flex-wrap gap-2 mb-10">
 	<legend>Base buttons</legend>
 	{#each buttonsArray as btn}
-		<Button type={btn.type} isOutlined={btn.isOutlined}>
+		<Button
+			isPending={isButtonPending}
+			type={btn.type}
+			isOutlined={btn.isOutlined}
+			onclick={() => {
+				isButtonPending = true;
+
+				setTimeout(() => {
+					isButtonPending = false;
+				}, 5000);
+			}}
+		>
 			{btn.text}
 		</Button>
 	{/each}
