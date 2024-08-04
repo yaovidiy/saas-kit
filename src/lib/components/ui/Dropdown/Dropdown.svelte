@@ -10,7 +10,7 @@
 	{:else}
 		<div tabindex="0" role="button" class="btn m-1">Open dropdown</div>
 	{/if}
-	<div class="dropdown-content">
+	<div class="dropdown-content z-10">
 		{@render children()}
 	</div>
 </div>
