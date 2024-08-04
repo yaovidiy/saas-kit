@@ -6,12 +6,14 @@
 		trigger,
 		header,
 		content,
-		footer
+		footer,
+		closeOnClickOutside
 	}: {
 		trigger?: Snippet;
 		header?: Snippet;
 		content?: Snippet;
 		footer?: Snippet;
+		closeOnClickOutside?: boolean;
 	} = $props();
 
 	let modal: HTMLDialogElement | null = null;
@@ -45,14 +47,24 @@
 				<p class="text-base">New modal base content</p>
 			{/if}
 		</div>
-		<div class="modal-action">
-			<form method="dialog">
-				{#if footer}
-					{@render footer()}
-				{:else}
-					<button class="btn btn-ghost">Close</button>
-				{/if}
-			</form>
-		</div>
+		{#if !closeOnClickOutside}
+			<div class="modal-action">
+				<form method="dialog" class={closeOnClickOutside ? 'modal-backdrop' : ''}>
+					{#if footer}
+						{@render footer()}
+					{:else}
+						<button class="btn btn-ghost">Close</button>
+					{/if}
+				</form>
+			</div>
+		{/if}
 	</div>
+	{#if closeOnClickOutside}
+		<form method="dialog" class={closeOnClickOutside ? 'modal-backdrop' : ''}>
+			{#if footer}
+				{@render footer()}
+			{/if}
+			<button>close</button>
+		</form>
+	{/if}
 </dialog>

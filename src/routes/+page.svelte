@@ -16,6 +16,7 @@
 	import Toggle from '$lib/components/ui/Toggle/Toggle.svelte';
 	import FileInput from '$lib/components/ui/FileInput/FileInput.svelte';
 	import Select from '$lib/components/ui/Select/Select.svelte';
+	import Modal from '$lib/components/Modal/Modal.svelte';
 
 	const { data } = $props();
 	let emailStatus = $state<string>('');
@@ -299,6 +300,10 @@
 	let isCheckedValue = $state<boolean>(false);
 	let selectedValue = $state<string>('');
 </script>
+
+<div>
+	<Modal closeOnClickOutside={true} />
+</div>
 
 <div>
 	Selected Value: {selectedValue}
