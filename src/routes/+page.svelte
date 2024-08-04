@@ -8,6 +8,7 @@
 	import ToastContainer from '$lib/components/ui/Toasts/ToastContainer.svelte';
 	import Tooltip from '$lib/components/ui/Tooltip/Tooltip.svelte';
 	import Article from '$lib/components/ui/Article/Article.svelte';
+	import toastStore from '$lib/stores/toasts.svelte.js';
 
 	const { data } = $props();
 	let emailStatus = $state<string>('');
@@ -60,13 +61,11 @@
 	}
 
 	function addDummyToast() {
-		dummyToasts = [
-			...dummyToasts,
-			{
-				message: 'This is a dummy toast',
-				type: 'success'
-			}
-		];
+		toastStore.addToast({
+			id: '',
+			message: 'This is a dummy toast',
+			type: 'warning'
+		});
 	}
 
 	const buttonsArray: {
@@ -216,7 +215,7 @@
 
 <Button type="primary" onclick={addDummyToast}>Add toast</Button>
 
-<ToastContainer toasts={dummyToasts}></ToastContainer>
+<ToastContainer />
 
 <Tooltip tooltip="Icon tooltip">
 	{#snippet trigger()}
