@@ -3,6 +3,7 @@
 		type,
 		size,
 		selectLabel,
+		selectedValue,
 		options,
 		label,
 		isDisabled,
@@ -11,6 +12,7 @@
 		type: 'primary' | 'secondary' | 'accent' | 'error' | 'success' | 'warning' | 'info';
 		size: 'xs' | 'sm' | 'md' | 'lg';
 		selectLabel?: string;
+		selectedValue?: string;
 		options: {
 			value: string;
 			label: string;
@@ -47,9 +49,9 @@
 		class="select {selectTypes[type]} {selectSizes[size]} select-bordered"
     onchange={(e) => onSelect && onSelect(e?.currentTarget?.value)}
 	>
-		<option disabled selected>{selectLabel}</option>
+		<option disabled selected={!selectedValue}>{selectLabel}</option>
 		{#each options as option}
-			<option value={option.value}>{option.label}</option>
+			<option selected={selectedValue === option.value} value={option.value}>{option.label}</option>
 		{/each}
 	</select>
 </label>

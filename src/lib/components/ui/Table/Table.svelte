@@ -16,9 +16,9 @@
 		footers?: string[];
 		modifiers?: string;
 		caption?: string;
-		headerCell?: Snippet<[string]>;
-		bodyCell?: Snippet<[T]>;
-		footerCell?: Snippet<[string]>;
+		headerCell?: Snippet<[string, number]>;
+		bodyCell?: Snippet<[T, number, number]>;
+		footerCell?: Snippet<[string, number]>;
 	} = $props();
 </script>
 
@@ -29,9 +29,9 @@
 		{/if}
 		<thead>
 			<tr>
-				{#each headers as header}
+				{#each headers as header, headerIndex}
 					{#if headerCell}
-						{@render headerCell(header)}
+						{@render headerCell(header, headerIndex)}
 					{:else}
 						<th>{header}</th>
 					{/if}
@@ -39,11 +39,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each data as row}
+			{#each data as row, rowIndex}
 				<tr>
-					{#each row as cell}
+					{#each row as cell, cellIndex}
 						{#if bodyCell}
-							{@render bodyCell(cell)}
+							{@render bodyCell(cell, rowIndex, cellIndex)}
 						{:else}
 							<td>{cell}</td>
 						{/if}
@@ -53,9 +53,9 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				{#each footers ?? [] as footer}
+				{#each footers ?? [] as footer, footerIndex}
 					{#if footerCell}
-						{@render footerCell(footer)}
+						{@render footerCell(footer, footerIndex)}
 					{:else}
 						<th>{footer}</th>
 					{/if}

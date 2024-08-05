@@ -9,18 +9,18 @@
 		footer,
 		closeOnClickOutside
 	}: {
-		trigger?: Snippet;
+		trigger?: Snippet<[HTMLDialogElement | null]>;
 		header?: Snippet;
 		content?: Snippet;
-		footer?: Snippet;
+		footer?: Snippet<[HTMLDialogElement | null]>;
 		closeOnClickOutside?: boolean;
 	} = $props();
 
-	let modal: HTMLDialogElement | null = null;
+	let modal: HTMLDialogElement | null = $state(null);
 </script>
 
 {#if trigger}
-	{@render trigger()}
+	{@render trigger(modal)}
 {:else}
 	<Button
 		extraClasses="max-w-[150xp] btn-outline"
@@ -47,23 +47,19 @@
 				<p class="text-base">New modal base content</p>
 			{/if}
 		</div>
-		{#if !closeOnClickOutside}
+		{#if footer}
+			{@render footer(modal)}
+		{/if}
+		{#if !closeOnClickOutside && !footer}
 			<div class="modal-action">
-				<form method="dialog" class={closeOnClickOutside ? 'modal-backdrop' : ''}>
-					{#if footer}
-						{@render footer()}
-					{:else}
-						<button class="btn btn-ghost">Close</button>
-					{/if}
+				<form method="dialog">
+					<button class="btn btn-ghost">Close</button>
 				</form>
 			</div>
 		{/if}
 	</div>
 	{#if closeOnClickOutside}
-		<form method="dialog" class={closeOnClickOutside ? 'modal-backdrop' : ''}>
-			{#if footer}
-				{@render footer()}
-			{/if}
+		<form method="dialog" class="modal-backdrop">
 			<button>close</button>
 		</form>
 	{/if}

@@ -7,6 +7,8 @@
 		isError,
 		errorMessage,
 		icon,
+		disabled,
+		readonly,
 		placeholder,
 		type,
 		value,
@@ -22,6 +24,8 @@
 		type: HTMLInputTypeAttribute;
 		value: string;
 		label?: string;
+		disabled?: boolean;
+		readonly?: boolean;
 		onInput?: (value: string) => void;
 		onBlur?: (value: string) => void;
 	} = $props();
@@ -43,6 +47,8 @@
 			bind:value
 			{type}
 			{placeholder}
+			{disabled}
+			{readonly}
 			class="w-full"
 		/>
 	</div>

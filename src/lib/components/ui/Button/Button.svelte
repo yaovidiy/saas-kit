@@ -30,7 +30,7 @@
 		info: 'btn-info'
 	};
 
-	let buttonClasses = `btn disabled:cursor-not-allowed text-base font-bold ${isOutlined ? 'btn-outline' : ''} ${buttonTypes[type]} min-h-[50px] md:max-w-[250px] w-full ${extraClasses}`;
+	let buttonClasses = `btn disabled:cursor-not-allowed text-base font-bold ${isOutlined ? 'btn-outline' : ''} ${buttonTypes[type]} min-h-[50px] md:max-w-[250px] w-full ${extraClasses ?? ''}`;
 </script>
 
 <button {onclick} disabled={isPending || isDisabled} class={buttonClasses} type="button">
