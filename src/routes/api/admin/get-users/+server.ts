@@ -8,7 +8,13 @@ export async function GET(event: RequestEvent): Promise<Response> {
   }
 
   try {
-    const users = await db.user.findMany()
+    const users = await db.user.findMany({
+      select: {
+        username: true,
+        email: true,
+        role: true
+      }
+    })
 
     return json(users)
   } catch (err) {
