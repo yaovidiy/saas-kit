@@ -2,7 +2,7 @@
 import { Lucia } from "lucia";
 import { dev } from "$app/environment";
 import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Role } from "@prisma/client";
 import { GitHub, Google } from "arctic";
 import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REDIRECT_URI } from "$env/static/private";
 
@@ -25,7 +25,8 @@ export const lucia = new Lucia(adapter, {
     return {
       // attributes has the type of DatabaseUserAttributes
       githubId: attributes.github_id,
-      username: attributes.username
+      username: attributes.username,
+      role: attributes.role
     };
   }
 });
@@ -39,4 +40,5 @@ declare module "lucia" {
 interface DatabaseUserAttributes {
   github_id: number;
   username: string;
+  role: Role;
 }

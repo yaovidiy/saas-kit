@@ -51,6 +51,7 @@ export async function POST(event: RequestEvent): Promise<Response> {
     data: {
       id: userId,
       username: username,
+      email: username,
       password_hash: passwordHash
     }
   });

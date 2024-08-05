@@ -10,7 +10,9 @@
 		placeholder,
 		type,
 		value,
-		label
+		label,
+		onInput,
+		onBlur
 	}: {
 		extraClasses?: string;
 		isError?: boolean;
@@ -20,6 +22,8 @@
 		type: HTMLInputTypeAttribute;
 		value: string;
 		label?: string;
+		onInput?: (value: string) => void;
+		onBlur?: (value: string) => void;
 	} = $props();
 </script>
 
@@ -33,7 +37,14 @@
 		{#if icon}
 			{@render icon()}
 		{/if}
-		<input bind:value {type} {placeholder} class="w-full" />
+		<input
+			onblur={(e) => onBlur && onBlur(value)}
+			oninput={(e) => onInput && onInput(value)}
+			bind:value
+			{type}
+			{placeholder}
+			class="w-full"
+		/>
 	</div>
 	{#if isError}
 		<div class="label" transition:slide>
