@@ -35,7 +35,7 @@
 
 <div class="form-control">
 	<label class="label cursor-pointer">
-		<span class="label-text">{label ?? ''}</span>
+		<span class="label-text mr-5">{label ?? ''}</span>
 		<input
 			type="checkbox"
 			class="toggle {toggleTypes[type]} {toggleSizes[size]}"

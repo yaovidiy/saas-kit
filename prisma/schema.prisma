@@ -18,6 +18,7 @@ model User {
   email         String    @unique
   role          Role      @default(USER)
   is_verified   Boolean   @default(false)
+  is_blocked    Boolean   @default(false)
   password_hash String?
   sessions      Session[]
 

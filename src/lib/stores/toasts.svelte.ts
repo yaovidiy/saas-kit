@@ -1,7 +1,7 @@
 import type { Snippet } from "svelte";
 import { randomId } from "$lib/utils/randomId";
 
-interface Toast {
+export interface Toast {
   id: string;
   message: string;
   type: 'success' | 'error' | 'warning' | 'info';

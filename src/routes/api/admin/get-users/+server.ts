@@ -12,8 +12,10 @@ export async function GET(event: RequestEvent): Promise<Response> {
       select: {
         username: true,
         email: true,
-        role: true
-      }
+        role: true,
+        is_blocked: true
+      },
+      orderBy: { username: "asc" }
     })
 
     return json(users)
