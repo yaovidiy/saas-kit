@@ -11,7 +11,8 @@
 		readonly,
 		placeholder,
 		type,
-		value,
+		value = $bindable(''),
+		name,
 		label,
 		onInput,
 		onBlur
@@ -23,6 +24,7 @@
 		placeholder?: string;
 		type: HTMLInputTypeAttribute;
 		value: string;
+		name?: string;
 		label?: string;
 		disabled?: boolean;
 		readonly?: boolean;
@@ -49,6 +51,7 @@
 			{placeholder}
 			{disabled}
 			{readonly}
+			{name}
 			class="w-full"
 		/>
 	</div>

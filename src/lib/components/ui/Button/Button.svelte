@@ -9,10 +9,12 @@
 		extraClasses,
 		isPending,
 		isDisabled,
+		buttonType = 'button',
 		onclick
 	}: {
 		children: Snippet;
 		type: 'primary' | 'secondary' | 'ghost' | 'error' | 'success' | 'warning' | 'info';
+		buttonType?: 'button' | 'submit' | 'reset';
 		isOutlined?: boolean;
 		isPending?: boolean;
 		isDisabled?: boolean;
@@ -33,7 +35,7 @@
 	let buttonClasses = `btn disabled:cursor-not-allowed text-base font-bold ${isOutlined ? 'btn-outline' : ''} ${buttonTypes[type]} min-h-[50px] md:max-w-[250px] w-full ${extraClasses ?? ''}`;
 </script>
 
-<button {onclick} disabled={isPending || isDisabled} class={buttonClasses} type="button">
+<button {onclick} disabled={isPending || isDisabled} class={buttonClasses} type={buttonType}>
 	{#if isPending}
 		<Loader type="spinner" size="lg" color="primary" />
 	{:else}
