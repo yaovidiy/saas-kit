@@ -2,7 +2,7 @@
 import { json, error } from "@sveltejs/kit";
 import { db } from "$lib/server/db/db";
 import { lucia } from "$lib/server/auth";
-import { verify } from "@node-rs/argon2";
+import bcrypt from 'bcrypt';
 
 import type { RequestEvent } from "@sveltejs/kit";
 
@@ -40,12 +40,7 @@ export async function POST(event: RequestEvent): Promise<Response> {
     });
   }
 
-  const validPassword = await verify(existingUser.password_hash, password, {
-    memoryCost: 19456,
-    timeCost: 2,
-    outputLen: 32,
-    parallelism: 1
-  });
+  const validPassword = await bcrypt.compare(password, existingUser.password_hash);
   if (!validPassword) {
     return error(400, {
       message: "Incorrect username or password"

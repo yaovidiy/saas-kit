@@ -2,7 +2,7 @@
 import { lucia } from "$lib/server/auth";
 import { error, json } from "@sveltejs/kit";
 import { generateIdFromEntropySize } from "lucia";
-import { hash } from "@node-rs/argon2";
+import bcrypt from 'bcrypt';
 import { db } from "$lib/server/db/db";
 import type { RequestEvent } from "@sveltejs/kit";
 
@@ -39,13 +39,7 @@ export async function POST(event: RequestEvent): Promise<Response> {
   }
 
   const userId = generateIdFromEntropySize(10); // 16 characters long
-  const passwordHash = await hash(password, {
-    // recommended minimum parameters
-    memoryCost: 19456,
-    timeCost: 2,
-    outputLen: 32,
-    parallelism: 1
-  });
+  const passwordHash = await bcrypt.hash(password, 10);
 
   await db.user.create({
     data: {
