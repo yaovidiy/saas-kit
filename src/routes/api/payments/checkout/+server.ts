@@ -1,6 +1,8 @@
 import { getStripeInstance } from "$lib/server/stripe";
 import { json, error } from "@sveltejs/kit";
-import { STRIPE_CANCEL_URL, STRIPE_SUCCESS_URL } from "$env/static/private";
+import { env } from "$env/dynamic/private";
+
+const { STRIPE_SUCCESS_URL, STRIPE_CANCEL_URL } = env;
 
 export async function POST({ request }: { request: Request }) {
   const body = await request.json();
